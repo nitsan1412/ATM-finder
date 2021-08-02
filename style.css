@@ -61,3 +61,13 @@ body {
     display: none;
   }
 }
+
+.map-container,
+#gmap_canvas {
+  height: 350px;
+  width: 100%;
+}
+#gmap_canvas img {
+  max-width: none !important;
+  background: none !important;
+}
