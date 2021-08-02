@@ -2,6 +2,7 @@ import axios from "/node_modules/@bundled-es-modules/axios/axios.js";
 import { DataTable } from "/node_modules/simple-datatables/dist/module/index.js";
 
 const table = document.querySelector("#myTable");
+let selectorMapElement = document.querySelector("#gmap_canvas");
 
 const res = axios
   .get(
@@ -11,6 +12,7 @@ const res = axios
     const header = drawTitles(res.data.result.fields);
     tableBody.innerHTML = `<tr scope="row">${header}</tr>`;
     drawTable(res.data.result.records);
+    drawOnMap(res.data.result.records);
     const dataTable = new DataTable(table);
   })
   .catch((err) => console.log(`error: ${err}`));
@@ -43,3 +45,56 @@ const drawTitles = (allTitles) => {
   });
   titles.innerHTML = row;
 };
+
+//--------------------------google map--------------------------------
+
+const drawOnMap = (Content) => {
+  for (let i = 0; i < Content.length; i++) {
+    if (
+      isFinite(Content[i].X_Coordinate) &&
+      isFinite(Content[i].Y_Coordinate) &&
+      Content[i].X_Coordinate !== 0 &&
+      Content[i].Y_Coordinate !== 0
+    ) {
+      if (Content[i].X_Coordinate > 32 && Content[i].Y_Coordinate < 34) {
+        init_map(
+          Content[i].Bank_Name,
+          Content[i].ATM_Address,
+          Content[i].Y_Coordinate,
+          Content[i].X_Coordinate
+        );
+      } else {
+        init_map(
+          Content[i].Bank_Name,
+          Content[i].ATM_Address,
+          Content[i].X_Coordinate,
+          Content[i].Y_Coordinate
+        );
+      }
+    }
+  }
+};
+const myOptions = {
+  zoom: 8,
+  center: new google.maps.LatLng(31.4037193, 33.9606947),
+  mapTypeId: google.maps.MapTypeId.ROADMAP,
+};
+const map = new google.maps.Map(selectorMapElement, myOptions);
+
+function init_map(name, address, x, y) {
+  let infowindow = new google.maps.InfoWindow({
+    content: `
+        <strong>${name}</strong>
+        <br>${address}<br>
+      `,
+  });
+  let marker = new google.maps.Marker({
+    map: map,
+    position: new google.maps.LatLng(x, y),
+  });
+  google.maps.event.addListener(marker, "click", function () {
+    infowindow.open(map, marker);
+  });
+}
+
+google.maps.event.addDomListener(window, "load", init_map);
