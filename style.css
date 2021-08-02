@@ -1,0 +1,63 @@
+html,
+body {
+  align-items: flex-start;
+  direction: rtl !important;
+  text-align: right;
+}
+#pageHeadline {
+  text-align: center;
+  text-decoration: underline !important;
+  font-weight: 700;
+  color: aquamarine;
+  margin: 1em;
+}
+#filter {
+  background-color: white;
+  font-weight: 700;
+  margin: 1em;
+}
+#filterSelcet {
+  display: none;
+}
+
+#searchFilter,
+#submitsearchFilterBtn {
+  margin: 1em;
+  /* visibility: hidden; */
+}
+#searcingDiv {
+  color: white;
+}
+#addFilter {
+  align-items: flex-start;
+  direction: rtl !important;
+  margin: 1em;
+}
+#addFilter:hover {
+  text-decoration: underline !important;
+}
+
+@media only screen and (max-width: 600px) {
+  th:nth-child(4),
+  th:nth-child(5),
+  th:nth-child(6),
+  th:nth-child(7),
+  th:nth-child(8),
+  th:nth-child(9),
+  th:nth-child(10),
+  th:nth-child(11),
+  th:nth-child(12),
+  th:nth-child(13),
+  td:nth-child(4),
+  td:nth-child(5),
+  td:nth-child(6),
+  td:nth-child(7),
+  td:nth-child(8),
+  td:nth-child(9),
+  td:nth-child(10),
+  td:nth-child(11),
+  td:nth-child(12),
+  td:nth-child(13) {
+    display: none;
+  }
+}
