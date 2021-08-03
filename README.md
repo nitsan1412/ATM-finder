@@ -8,7 +8,7 @@ This project is for finding atms in Israel and seeing them on the map
 
 `git clone {project_url}`
 
-2. install npm dependecies - (in the package.json file)
+2. install npm dependecies - (in the package.json file).
 
 `npm install`
 
