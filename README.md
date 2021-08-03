@@ -12,4 +12,4 @@ This project is for finding atms in Israel and seeing them on the map
 
 `npm install`
 
-3. open liveserver or browser in the correct port and see the result.‏
+3. open liveserver or browser in the correct port and see the result‏
